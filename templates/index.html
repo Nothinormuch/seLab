@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="filter">
+  <form method="get" id="filterForm">
+    <label>Max Distance:
+      <select name="distance">
+        {% for d in [0,1,2,3] %}
+          <option value="{{ d }}" {% if distance == d %}selected{% endif %}>{{ d }} km</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>Budget Range (₹):
+      <input type="text" id="minPrice" value="100000" readonly>
+      <input type="range" name="price" id="priceRange" min="100000" max="160000" step="1000" value="{{ price }}">
+      <input type="text" id="maxPrice" name="price_display" value="{{ price }}" readonly>
+    </label>
+
+    <button type="submit">Apply Filters</button>
+  </form>
+</section>
+
+<section class="results">
+  <table>
+    <thead>
+      <tr>
+        <th>Hostel Name</th>
+        <th>Location</th>
+        <th>Distance from Campus</th>
+        <th>Yearly Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for h in hostels %}
+      <tr>
+        <td>{{ h.name }}</td>
+        <td>{{ h.location }}</td>
+        <td>{{ "%.1f"|format(h.distance) }} km</td>
+        <td>₹{{ "{:,}".format(h.price) }}</td>
+      </tr>
+      {% endfor %}
+      {% if hostels|length == 0 %}
+      <tr><td colspan="4">No hostels match the filters.</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+</section>
+
+<script>
+const priceRange = document.getElementById('priceRange');
+const maxPrice = document.getElementById('maxPrice');
+priceRange.addEventListener('input', ()=> {
+  maxPrice.value = priceRange.value;
+});
+</script>
+{% endblock %}

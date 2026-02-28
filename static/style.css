@@ -1,0 +1,12 @@
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;padding:0;color:#222}
+header{background:#0b6fb2;color:#fff;padding:12px 20px}
+h1{margin:0;font-size:20px}
+main{padding:16px}
+.filter{margin-bottom:12px}
+.filter form{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.filter label{font-size:14px}
+button{padding:6px 10px;background:#0b6fb2;color:#fff;border:none;border-radius:3px;cursor:pointer}
+table{width:100%;border-collapse:collapse;margin-top:8px}
+th,td{padding:8px;border:1px solid #ddd;text-align:left}
+th{background:#f4f4f4}
+footer{padding:8px;text-align:center;font-size:12px;color:#666}
