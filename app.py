@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+import os
+from flask import Flask, render_template, request, send_from_directory
 app = Flask(__name__)
 
 hostels = [
@@ -10,6 +11,11 @@ hostels = [
     {"name": "Salwoods Hostel", "location": "Pondha", "distance": 2.1, "price": 107000},
     {"name": "Aravali Hostel", "location": "Premnagar", "distance": 3.0, "price": 159000},
 ]
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route("/", methods=["GET"])
 def index():
