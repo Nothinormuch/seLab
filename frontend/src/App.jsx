@@ -10,6 +10,8 @@ import { Footer } from './components/Footer';
 import { useFavorites } from './hooks/useFavorites';
 import './index.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || '';
+
 function App() {
   // Filter state
   const [distance, setDistance] = useState(3);
@@ -37,7 +39,7 @@ function App() {
     setError(null);
     try {
       const response = await fetch(
-        `/api/hostels?distance=${dist}&price=${price[1]}`
+        `${API_BASE_URL}/api/hostels?distance=${dist}&price=${price[1]}`
       );
       if (!response.ok) throw new Error('Failed to fetch hostels');
       const data = await response.json();
