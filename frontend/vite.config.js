@@ -7,7 +7,7 @@ export default defineConfig({
     port: 8080,
     proxy: {
       '/api': {
-        target: 'https://selab-backend-h4ekfbb35-nothinalton-7988s-projects.vercel.app',
+        target: 'https://selab-5plm.onrender.com/',
         changeOrigin: true,
       },
     },
